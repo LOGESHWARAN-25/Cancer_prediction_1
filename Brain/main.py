@@ -337,13 +337,12 @@ classPaths.sort()
 for className in classPaths:
     print(className)
 
-className='ALL'
-cpath = os.path.join(mpath, className)
-noOfClasses, class_names, train_generator, validation_generator = initiateGenerator(cpath)
-curModel = initiateModel(noOfClasses)
-modelSummary(curModel)
-curModel, annealer, checkpoint = initiateParams(className, curModel, lr)
-
+# className='ALL'
+# cpath = os.path.join(mpath, className)
+# noOfClasses, class_names, train_generator, validation_generator = initiateGenerator(cpath)
+# curModel = initiateModel(noOfClasses)
+# modelSummary(curModel)
+# curModel, annealer, checkpoint = initiateParams(className, curModel, lr)
 
 className='Brain Cancer'
 
@@ -533,7 +532,7 @@ root.mainloop()
 # @app.route('/')
 # def index():
 #     return render_template('index.html')
-#
+
 # @app.route('/predict', methods=['POST'])
 # def predict():
 #     if request.method == 'POST':
