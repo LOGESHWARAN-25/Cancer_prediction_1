@@ -51,6 +51,7 @@ def initiateGenerator(path):
 
     # Get the class names and number of classes in the dataset
     class_names = train_dataset.class_names
+    print(class_names,'ok')
     noOfClasses = len(class_names)
     print("\nNo of Classes : ", noOfClasses)
     print("Classes : ", class_names)
@@ -470,101 +471,101 @@ model = tf.keras.models.load_model(className+" - MobileNetV3.h5")
 # predicted_cancer_type = predict_cancer_type(input_image_path)
 # print("Predicted Cancer Type:", predicted_cancer_type)
 #
-# import tkinter as tk
-# from tkinter import filedialog
-# from PIL import Image, ImageTk
-# import os
+import tkinter as tk
+from tkinter import filedialog
+from PIL import Image, ImageTk
+import os
+
+# Existing code...
+
+# Create a Tkinter window
+root = tk.Tk()
+root.title("Multi Cancer Diagnosis")
+
+# Function to browse for an image file
+def browse_image():
+    file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])
+    if file_path:
+        image_display(file_path)
+
+# Function to display the selected image
+def image_display(image_path):
+    img = Image.open(image_path)
+    img.thumbnail((300, 300))
+    photo = ImageTk.PhotoImage(img)
+    img_label.config(image=photo)
+    img_label.image = photo
+    predicted_cancer_type = predict_cancer_type(image_path)
+    result_label.config(text="Predicted Cancer Type: " + predicted_cancer_type)
+
+# Create browse button
+browse_button = tk.Button(root, text="Browse", command=browse_image)
+browse_button.pack(pady=10)
+
+# Create image label to display the selected image
+img_label = tk.Label(root)
+img_label.pack(pady=10)
+
+# Create label to display the predicted cancer type
+result_label = tk.Label(root, text="")
+result_label.pack(pady=5)
+
+# Run the Tkinter main loop
+root.mainloop()
+
+# from flask import Flask, render_template, request
+# import tensorflow as tf
+# from tensorflow.keras.applications import MobileNetV3Small
+# from tensorflow.keras.preprocessing.image import img_to_array
+# from tensorflow.keras.applications.imagenet_utils import decode_predictions
+# from PIL import Image
+# import numpy as np
+# import cv2
 #
-# # Existing code...
+# app = Flask(__name__)
 #
-# # Create a Tkinter window
-# root = tk.Tk()
-# root.title("Multi Cancer Diagnosis")
+# # Load the pre-trained MobileNetV3 model
+# model = tf.keras.models.load_model("Brain Cancer - MobileNetV3.h5")
 #
-# # Function to browse for an image file
-# def browse_image():
-#     file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])
-#     if file_path:
-#         image_display(file_path)
+# # Class names for the multicancer diagnosis model
+# class_names = ["ALL", "Brain Cancer", ...]  # Add other cancer types based on your model
 #
-# # Function to display the selected image
-# def image_display(image_path):
-#     img = Image.open(image_path)
-#     img.thumbnail((300, 300))
-#     photo = ImageTk.PhotoImage(img)
-#     img_label.config(image=photo)
-#     img_label.image = photo
-#     predicted_cancer_type = predict_cancer_type(image_path)
-#     result_label.config(text="Predicted Cancer Type: " + predicted_cancer_type)
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 #
-# # Create browse button
-# browse_button = tk.Button(root, text="Browse", command=browse_image)
-# browse_button.pack(pady=10)
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     if request.method == 'POST':
+#         file = request.files['file']
+#         if file:
+#             # Load the image
+#             img = Image.open(file)
+#             img = img.resize((224, 224))
+#             img = img.convert('RGB')
+#             img_array = img_to_array(img)
+#             img_array = np.expand_dims(img_array, axis=0)
+#             img_array = img_array / 255.0
 #
-# # Create image label to display the selected image
-# img_label = tk.Label(root)
-# img_label.pack(pady=10)
+#             # Make the prediction using the model
+#             predictions = model.predict(img_array)
+#             predicted_class_index = np.argmax(predictions)
+#             predicted_class = class_names[predicted_class_index]
+#             predicted_prob = predictions[0][predicted_class_index]
 #
-# # Create label to display the predicted cancer type
-# result_label = tk.Label(root, text="")
-# result_label.pack(pady=5)
+#             # Prepare the image for display
+#             image_for_display = cv2.cvtColor(np.array(img) * 255, cv2.COLOR_RGB2BGR)
+#             enlarged_image = cv2.resize(image_for_display, (800, 800))
+#             canvas = np.ones_like(enlarged_image) * 255
+#             text = f"Predicted: {predicted_class}\nProbability: {predicted_prob:5.3f}"
+#             text_position = (20, 40)
+#             canvas[:enlarged_image.shape[0], :enlarged_image.shape[1], :] = enlarged_image
 #
-# # Run the Tkinter main loop
-# root.mainloop()
-
-from flask import Flask, render_template, request
-import tensorflow as tf
-from tensorflow.keras.applications import MobileNetV3Small
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.applications.imagenet_utils import decode_predictions
-from PIL import Image
-import numpy as np
-import cv2
-
-app = Flask(__name__)
-
-# Load the pre-trained MobileNetV3 model
-model = tf.keras.models.load_model("Brain Cancer - MobileNetV3.h5")
-
-# Class names for the multicancer diagnosis model
-class_names = ["ALL", "Brain Cancer", ...]  # Add other cancer types based on your model
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            # Load the image
-            img = Image.open(file)
-            img = img.resize((224, 224))
-            img = img.convert('RGB')
-            img_array = img_to_array(img)
-            img_array = np.expand_dims(img_array, axis=0)
-            img_array = img_array / 255.0
-
-            # Make the prediction using the model
-            predictions = model.predict(img_array)
-            predicted_class_index = np.argmax(predictions)
-            predicted_class = class_names[predicted_class_index]
-            predicted_prob = predictions[0][predicted_class_index]
-
-            # Prepare the image for display
-            image_for_display = cv2.cvtColor(np.array(img) * 255, cv2.COLOR_RGB2BGR)
-            enlarged_image = cv2.resize(image_for_display, (800, 800))
-            canvas = np.ones_like(enlarged_image) * 255
-            text = f"Predicted: {predicted_class}\nProbability: {predicted_prob:5.3f}"
-            text_position = (20, 40)
-            canvas[:enlarged_image.shape[0], :enlarged_image.shape[1], :] = enlarged_image
-
-            # Save the output image for display
-            output_image_path = "static/output_image.png"
-            cv2.imwrite(output_image_path, canvas)
-
-            return render_template('result.html', image_path=output_image_path, text=text)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+#             # Save the output image for display
+#             output_image_path = "static/output_image.png"
+#             cv2.imwrite(output_image_path, canvas)
+#
+#             return render_template('result.html', image_path=output_image_path, text=text)
+#
+# if __name__ == '__main__':
+#     app.run(debug=True)
