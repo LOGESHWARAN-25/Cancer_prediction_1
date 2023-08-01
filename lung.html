@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lung Cancer Diagnosis</title>
+  <link rel="stylesheet" href="lung_1.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Service</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main style="background-image: url('https://thumbs.dreamstime.com/z/world-tuberculosis-day-no-tobacco-campaign-people-surrounding-lungs-illustration-making-heart-shaped-frame-hands-191156514.jpg');">
+    <h1>Lung Cancer</h1>
+    <p id="patientName"></p>
+    <div class="image-upload">
+      <h2>Upload Lung Image</h2>
+      <input type="file" id="uploadImage" accept="image/*">
+      <button id="predictButton" onclick="predict()">Predict</button>
+    </div>
+
+    <div class="output" id="predictionOutput" style="display: none;">
+      <h2>Prediction Result</h2>
+      <p id="predictionResult"></p>
+      <div class="output-images" id="outputImagesContainer">
+        <!-- Output images will be inserted here -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Cancer Diagnosis Project. All rights reserved.</p>
+  </footer>
+
+  <div class="full-screen-modal" id="fullScreenModal">
+    <span class="close-button" onclick="closeFullScreen()">&times;</span>
+    <img class="full-screen-image" id="fullScreenImage">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

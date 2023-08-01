@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancer Diagnosis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Services</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Welcome to Cancer Diagnosis</h1>
+    <p>Choose the type of cancer you want to diagnose:</p>
+    <form class="diagnosis-form" action="diagnosis_process.php" method="POST">
+      <label for="patient_name">Patient Name:</label>
+      <input type="text" id="patient_name" name="patient_name" required>
+
+      <label for="patient_age">Patient Age:</label>
+      <input type="number" id="patient_age" name="patient_age" required>
+
+      <label for="cancer_type">Cancer Type:</label>
+      <select id="cancer_type" name="cancer_type" required>
+        <option value="">Select Cancer Type</option>
+        <option value="brain">Brain Cancer</option>
+        <option value="lung">Lung Cancer</option>
+        <option value="kidney">Kidney Cancer</option>
+        <option value="oral">Oral Cancer</option>
+      </select>
+
+      <button type="button" onclick="navigateToSelectedPage()">ENTER</button>
+    </form>
+    <script>
+    function navigateToSelectedPage() {
+      var selectElement = document.getElementById("cancer_type");
+      var selectedValue = selectElement.value;
+
+      // Check if a valid option is selected
+      if (selectedValue) {
+        var pageUrl = ""; // Set the URL of the corresponding page
+
+        // Define the URLs for each option (modify as per your requirement)
+        switch (selectedValue) {
+          case "brain":
+            pageUrl = "brain.html";
+            break;
+          case "lung":
+            pageUrl = "lung.html";
+            break;
+          case "kidney":
+            pageUrl = "kidney.html";
+            break;
+          case "oral":
+            pageUrl = "oral.html";
+            break;
+          default:
+            break;
+        }
+
+        // Navigate to the corresponding page
+        if (pageUrl) {
+          window.location.href = pageUrl;
+        }
+      }
+    }
+  </script>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Cancer Diagnosis Project. All rights reserved.</p>
+  </footer>
+</body>
+</html>
