@@ -3,11 +3,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 from PIL import Image
+from flask import Flask, request, jsonify
+import requests
+from PIL import Image
+from io import BytesIO
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app, resources={r"/predict_lung": {"origins": "*"}})
+
 
 model = tf.keras.models.load_model("Lung and Colon Cancer - MobileNetV3.h5")
-class_names = ['colon_aca','colon_bnt','lung_aca','lung_bnt','lung_scc']
+class_names = ['Pneumonia','Normal']
+
+def download_image_from_url(image_url):
+    response = requests.get(image_url)
+    if response.status_code == 200:
+        return response.content
+    else:
+        raise Exception("Failed to download image from URL")
+
 
 def load_image(image_path_or_url):
+    # image_data = download_image_from_url(image_path_or_url)
+    # image = Image.open(BytesIO(image_data))
     image = Image.open(image_path_or_url)
     return image
 def preprocess_image(image):
@@ -16,9 +35,12 @@ def preprocess_image(image):
     image = np.array(image)   # Normalize the pixel values between 0 and 1
     image = np.expand_dims(image, axis=0)
     return image
-
-def predict_cancer_type(image_path_or_url):
-    # Load the image
+@app.route('/predict_lung', methods=['POST'])
+def predict_cancer_type():
+    print("req in lung")
+    data = request.get_json()
+    image_path_or_url = data.get('image_path_or_url')
+    # image_path_or_url = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Brain Cancer/brain_menin/brain_menin_0016.jpg'
     image = load_image(image_path_or_url)
 
     # Preprocess the image
@@ -26,6 +48,7 @@ def predict_cancer_type(image_path_or_url):
 
     # Make predictions
     predictions = model.predict(image)
+    print(predictions)
     predicted_class_index = np.argmax(predictions)
     predicted_class = class_names[predicted_class_index]
 
@@ -51,10 +74,12 @@ def predict_cancer_type(image_path_or_url):
         # canvas[:enlarged_image.shape[0], :enlarged_image.shape[1], :] = enlarged_image
 
         # Display the image with the predicted class and probability
-        return predicted_class
+        return jsonify({'prediction': predicted_class})
+        # return predicted_class
     else:
         print("Wrong Input: The provided image does not belong to any of the trained classes.")
         return "Wrong Input"
 
 if __name__ == '__main__':
-    print(predict_cancer_type('C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Brain Cancer/brain_menin/brain_menin_0016.jpg'))
+    app.run(port= 5003,debug=True)
+    # print(predict_cancer_type())

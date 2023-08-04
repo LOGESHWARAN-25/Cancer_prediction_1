@@ -11,6 +11,8 @@
     <nav>
       <ul>
         <li><a href="home.html">Home</a></li>
+         <li><a href="diagnosis.html">Detection</a></li>
+        <li><a href="symptoms.html">Symptoms Detection</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="service.html">Service</a></li>
       </ul>
@@ -57,7 +59,7 @@
             const imageUrl = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Brain Cancer/brain_menin/'+file.name
             console.log(imageUrl)
             // Make a POST request to your Python script using XMLHttpRequest
-            fetch('http://localhost:5000/predict', {
+            fetch('http://localhost:5000/predict_brain', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

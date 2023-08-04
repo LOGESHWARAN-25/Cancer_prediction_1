@@ -10,7 +10,7 @@ from io import BytesIO
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "*"}})
+CORS(app, resources={r"/predict_brain": {"origins": "*"}})
 
 
 model = tf.keras.models.load_model("Brain Cancer - MobileNetV3.h5")
@@ -34,8 +34,9 @@ def preprocess_image(image):
     image = np.array(image)   # Normalize the pixel values between 0 and 1
     image = np.expand_dims(image, axis=0)
     return image
-@app.route('/predict', methods=['POST'])
+@app.route('/predict_brain', methods=['POST'])
 def predict_cancer_type():
+    print("req in brain")
     data = request.get_json()
     image_path_or_url = data.get('image_path_or_url')
     # image_path_or_url = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Brain Cancer/brain_menin/brain_menin_0016.jpg'
@@ -46,6 +47,7 @@ def predict_cancer_type():
 
     # Make predictions
     predictions = model.predict(image)
+    print(predictions)
     predicted_class_index = np.argmax(predictions)
     predicted_class = class_names[predicted_class_index]
 
@@ -78,5 +80,5 @@ def predict_cancer_type():
         return "Wrong Input"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port= 5000,debug=True)
     # print(predict_cancer_type())

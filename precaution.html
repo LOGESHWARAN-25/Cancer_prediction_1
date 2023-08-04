@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Symptom Checker - Cancer Diagnosis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select {
+      display: block;
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: disc;
+      margin-left: 20px;
+      margin-bottom: 5px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+  }
+  </style>
+</head>
+<body>
+<header>
+    <nav>
+      <ul>
+        <li><a href="diagnosis.html">Home</a></li>
+         <li><a href="diagnosis.html">Detection</a></li>
+        <li><a href="symptoms.html">Symptoms Detection</a></li>
+           <li><a href="precaution.html">Precaution & Diet</a></li>
+           <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Service</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Interactive Symptom Checker - Cancer Diagnosis</h2>
+    <label for="cancerType">Select the cancer type:</label>
+    <select id="cancerType" onchange="showInformation()">
+      <option value="">Select Cancer Type</option>
+      <option value="brain">Brain Cancer</option>
+      <option value="oral">Oral Cancer</option>
+      <option value="lung">Lung Cancer</option>
+      <option value="kidney">Kidney Cancer</option>
+    </select>
+
+    <div id="information">
+      <!-- Information about precautions and recommended foods for the selected cancer type will be displayed here -->
+    </div>
+
+<!--    <button onclick="predictCancer()">Predict Cancer</button>-->
+
+    <div id="result">
+<!--      <h3>Prediction Result:</h3>-->
+<!--      <p id="predictionResult"></p>-->
+    </div>
+  </div>
+
+  <script>
+    const informationData = {
+      brain: {
+        precautions: [
+          "Avoid exposure to harmful chemicals.",
+          "Use sunscreen and protect your head from the sun.",
+          "Stay hydrated and maintain a healthy diet.",
+        ],
+        foodsToEat: [
+          "Fruits rich in antioxidants, such as berries and citrus fruits.",
+          "Leafy greens and vegetables high in vitamins and minerals.",
+          "Lean proteins like fish, chicken, and tofu.",
+        ],
+      },
+      oral: {
+        precautions: [
+          "Quit smoking and avoid tobacco products.",
+          "Limit alcohol consumption.",
+          "Practice good oral hygiene and visit your dentist regularly.",
+        ],
+        foodsToEat: [
+          "Soft and easily digestible foods.",
+          "Smoothies and soups.",
+          "Foods rich in vitamins A and C for oral health.",
+        ],
+      },
+      lung: {
+        precautions: [
+          "Avoid exposure to tobacco smoke and other harmful pollutants.",
+          "Keep your home and workplace well-ventilated.",
+          "Practice deep breathing exercises and avoid heavy lifting.",
+        ],
+        foodsToEat: [
+          "Foods high in antioxidants, such as tomatoes and broccoli.",
+          "Omega-3 fatty acids found in fish and nuts.",
+          "Vitamin D-rich foods like eggs and fortified dairy products.",
+        ],
+      },
+      kidney: {
+        precautions: [
+          "Stay hydrated and drink plenty of water.",
+          "Limit salt intake and avoid processed foods.",
+          "Avoid over-the-counter pain medications that can harm the kidneys.",
+        ],
+        foodsToEat: [
+          "Low-potassium foods like apples and cabbage.",
+          "Lean proteins such as chicken and fish.",
+          "Healthy fats found in avocados and olive oil.",
+        ],
+      },
+    };
+
+    function showInformation() {
+      const cancerType = document.getElementById('cancerType').value;
+      const informationContainer = document.getElementById('information');
+
+      while (informationContainer.firstChild) {
+        informationContainer.removeChild(informationContainer.firstChild);
+      }
+
+      if (cancerType) {
+        const precautions = informationData[cancerType].precautions;
+        const foodsToEat = informationData[cancerType].foodsToEat;
+
+        const precautionsHeading = document.createElement('h3');
+        precautionsHeading.textContent = 'Precautions:';
+        informationContainer.appendChild(precautionsHeading);
+
+        const precautionsList = document.createElement('ul');
+        precautions.forEach(precaution => {
+          const listItem = document.createElement('li');
+          listItem.textContent = precaution;
+          precautionsList.appendChild(listItem);
+        });
+        informationContainer.appendChild(precautionsList);
+
+        const foodsHeading = document.createElement('h3');
+        foodsHeading.textContent = 'Foods to Eat:';
+        informationContainer.appendChild(foodsHeading);
+
+        const foodsList = document.createElement('ul');
+        foodsToEat.forEach(food => {
+          const listItem = document.createElement('li');
+          listItem.textContent = food;
+          foodsList.appendChild(listItem);
+        });
+        informationContainer.appendChild(foodsList);
+      }
+    }
+
+    function predictCancer() {
+      // Implement your cancer prediction logic here
+      // This function is left empty since it requires backend integration and sophisticated algorithms.
+    }
+  </script>
+</body>
+</html>

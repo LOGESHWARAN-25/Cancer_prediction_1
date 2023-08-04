@@ -1,81 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cancer Diagnosis</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Cancer Diagnosis Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .intro h1 {
+      font-size: 36px;
+    }
+
+    .intro p {
+      font-size: 18px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .diagnosis-info {
+      margin-top: 30px;
+    }
+
+    .diagnosis-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .diagnosis-info p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .patient-info {
+      margin-top: 30px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .patient-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .patient-info p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+     nav li {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+     nav a {
+    color: #fff;
+    text-decoration: none;
+  }
+  </style>
 </head>
 <body>
   <header>
+      <h1>CANCER DIAGNOSIS</h1>
     <nav>
       <ul>
         <li><a href="home.html">Home</a></li>
+          <li><a href="diagnosis.html">Detection</a></li>
+          <li><a href="symptoms.html">Symptoms Detection</a></li>
+           <li><a href="precaution.html">Precaution & Diet</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="service.html">Services</a></li>
+
       </ul>
     </nav>
   </header>
+  <div class="container">
+    <div class="intro">
 
-  <main>
-    <h1>Welcome to Cancer Diagnosis</h1>
-    <p>Choose the type of cancer you want to diagnose:</p>
-    <form class="diagnosis-form" action="diagnosis_process.php" method="POST">
-      <label for="patient_name">Patient Name:</label>
-      <input type="text" id="patient_name" name="patient_name" required>
+      <p>
+        Our mission is to provide accurate and reliable information about various types of cancer and help users
+        understand the symptoms, diagnosis, and treatment options available.
+      </p>
+    </div>
 
-      <label for="patient_age">Patient Age:</label>
-      <input type="number" id="patient_age" name="patient_age" required>
 
-      <label for="cancer_type">Cancer Type:</label>
-      <select id="cancer_type" name="cancer_type" required>
-        <option value="">Select Cancer Type</option>
-        <option value="brain">Brain Cancer</option>
-        <option value="lung">Lung Cancer</option>
-        <option value="kidney">Kidney Cancer</option>
-        <option value="oral">Oral Cancer</option>
-      </select>
+    <div class="diagnosis-info">
+      <h2>Understanding Cancer Diagnosis</h2>
+      <p>
+        Cancer diagnosis is a critical step in determining the type and stage of cancer. It involves various tests,
+        imaging studies, and biopsy procedures to identify the presence of cancer cells in the body. Early diagnosis
+        can significantly improve treatment outcomes and increase the chances of recovery.
+      </p>
+      <p>
+        On this platform, we provide comprehensive information about different types of cancer, their symptoms,
+        risk factors, and available diagnostic methods. However, please remember that this portal is for informational
+        purposes only, and you should always consult a healthcare professional for personalized medical advice and
+        diagnosis.
+      </p>
+      <p>
+        Together, let's raise awareness about cancer and promote early detection to fight against this deadly disease.
+      </p>
+    </div>
 
-      <button type="button" onclick="navigateToSelectedPage()">ENTER</button>
-    </form>
-    <script>
-    function navigateToSelectedPage() {
-      var selectElement = document.getElementById("cancer_type");
-      var selectedValue = selectElement.value;
-
-      // Check if a valid option is selected
-      if (selectedValue) {
-        var pageUrl = ""; // Set the URL of the corresponding page
-
-        // Define the URLs for each option (modify as per your requirement)
-        switch (selectedValue) {
-          case "brain":
-            pageUrl = "brain.html";
-            break;
-          case "lung":
-            pageUrl = "lung.html";
-            break;
-          case "kidney":
-            pageUrl = "kidney.html";
-            break;
-          case "oral":
-            pageUrl = "oral.html";
-            break;
-          default:
-            break;
-        }
-
-        // Navigate to the corresponding page
-        if (pageUrl) {
-          window.location.href = pageUrl;
-        }
-      }
-    }
-  </script>
-  </main>
-
-  <footer>
-    <p>&copy; 2023 Cancer Diagnosis Project. All rights reserved.</p>
-  </footer>
+    <div class="patient-info">
+      <h2>Cancer Patients in India</h2>
+      <p>
+        In India, there are nearly 17 lakh (1.7 million) active cancer patients. India ranks as the 3rd country with the
+        largest number of cancer patients in the world. This highlights the importance of early detection and timely
+        treatment to improve the survival rates and overall outcomes for cancer patients.
+      </p>
+      <p>
+        Our platform is dedicated to empowering individuals with knowledge and awareness about cancer, enabling them
+        to take proactive measures for early diagnosis and treatment planning. Through education and support, we aim
+        to make a positive impact on the fight against cancer in India.
+      </p>
+    </div>
+  </div>
 </body>
 </html>

@@ -10,7 +10,7 @@ from io import BytesIO
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "*"}})
+CORS(app, resources={r"/predict_oral": {"origins": "*"}})
 
 
 model = tf.keras.models.load_model("Oral Cancer - MobileNetV3.h5")
@@ -34,11 +34,12 @@ def preprocess_image(image):
     image = np.array(image)   # Normalize the pixel values between 0 and 1
     image = np.expand_dims(image, axis=0)
     return image
-@app.route('/predict', methods=['POST'])
+@app.route('/predict_oral', methods=['POST'])
 def predict_cancer_type():
-    # data = request.get_json()
-    # image_path_or_url = data.get('image_path_or_url')
-    image_path_or_url = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Oral Cancer/oral_normal/oral_normal_0016.jpg'
+    print("Req recived in oral")
+    data = request.get_json()
+    image_path_or_url = data.get('image_path_or_url')
+    # image_path_or_url = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Oral Cancer/oral_normal/oral_normal_0016.jpg'
     image = load_image(image_path_or_url)
 
     # Preprocess the image
@@ -71,12 +72,12 @@ def predict_cancer_type():
         # canvas[:enlarged_image.shape[0], :enlarged_image.shape[1], :] = enlarged_image
 
         # Display the image with the predicted class and probability
-        # return jsonify({'prediction': predicted_class})
-        return predicted_class
+        return jsonify({'prediction': predicted_class})
+        # return predicted_class
     else:
         print("Wrong Input: The provided image does not belong to any of the trained classes.")
         return "Wrong Input"
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    print(predict_cancer_type())
+    app.run(port=5001,debug=True)
+    # print(predict_cancer_type())

@@ -11,6 +11,9 @@
     <nav>
       <ul>
         <li><a href="home.html">Home</a></li>
+         <li><a href="diagnosis.html">Detection</a></li>
+        <li><a href="symptoms.html">Symptoms Detection</a></li>
+         <li><a href="precaution.html">Precaution & Diet</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="service.html">Service</a></li>
       </ul>
@@ -24,6 +27,7 @@
       <h2>Upload Kidney Image</h2>
       <input type="file" id="uploadImage" accept="image/*">
       <button id="predictButton" onclick="predict()">Predict</button>
+      <div id="resultDiv"></div>
     </div>
 
     <div class="output" id="predictionOutput" style="display: none;">
@@ -44,6 +48,33 @@
     <img class="full-screen-image" id="fullScreenImage">
   </div>
 
-  <script src="script.js"></script>
+  <script>
+     function predict() {
+          console.log("predict is called")
+            const imageUrlInput = document.getElementById("uploadImage");
+            console.log(imageUrlInput)
+            const file = imageUrlInput.files[0];
+            console.log(file.name)
+            const imageUrl = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Kidney Cancer/kidney_normal/'+file.name
+            console.log(imageUrl)
+            // Make a POST request to your Python script using XMLHttpRequest
+            fetch('http://localhost:5002/predict_kidney', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'image_path_or_url': imageUrl })
+            })
+            .then(response => response.json())
+            .then(result => {
+                // const resultDiv = document.getElementById("resultDiv");
+                // resultDiv.innerText = `Prediction: ${result.prediction}`;
+              console.log(result)
+               const resultDiv = document.getElementById("resultDiv");
+                resultDiv.innerText = `Prediction: ${result.prediction}`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+  </script>
 </body>
 </html>

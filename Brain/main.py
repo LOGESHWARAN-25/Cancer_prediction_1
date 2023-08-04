@@ -148,19 +148,11 @@ def modelSummary(model):
 
 def initiateParams(className, model, lr):
     opt = tf.keras.optimizers.Adam(learning_rate=lr)
-
-    # Compile the model with the optimizer, loss function, and evaluation metric
     model.compile(optimizer=opt,
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
-
-    # Create a ReduceLROnPlateau callback to reduce the learning rate when validation accuracy plateaus
     annealer = ReduceLROnPlateau(monitor='val_accuracy', factor=0.5, patience=5, verbose=1, min_lr=1e-3)
-
-    # Create a ModelCheckpoint callback to save the best model during training
     checkpoint = ModelCheckpoint(className + 'MobileNet.h5', verbose=1, save_best_only=True)
-
-    # Return the model and the callbacks
     return model, annealer, checkpoint
 
 

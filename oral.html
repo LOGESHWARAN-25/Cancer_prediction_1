@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Cancer Diagnosis</title>
+  <link rel="stylesheet" href="brain_1.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+         <li><a href="diagnosis.html">Detection</a></li>
+        <li><a href="symptoms.html">Symptoms Detection</a></li>
+         <li><a href="precaution.html">Precaution & Diet</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Service</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main style="background-image: url('https://thumbs.dreamstime.com/b/medical-concept-oral-cancer-phrase-piece-paper-medical-concept-oral-cancer-phrase-piece-208203992.jpg');">
+    <h1>Welcome to Oral Cancer Diagnosis</h1>
+    <p id="patientName"></p>
+    <div class="image-upload">
+      <h2>Upload Oral Image</h2>
+      <input type="file" id="uploadImage" accept="image/*">
+      <button id="predictButton" onclick="predict()">Predict</button>
+      <div id="resultDiv"></div>
+
+
+    </div>
+
+    <div class="output" id="predictionOutput" style="display: none;">
+      <h2>Prediction Result</h2>
+      <p id="predictionResult"></p>
+      <div class="output-images" id="outputImagesContainer">
+        <!-- Output images will be inserted here -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy;thank u.</p>
+  </footer>
+
+  <div class="full-screen-modal" id="fullScreenModal">
+    <span class="close-button" onclick="closeFullScreen()">&times;</span>
+    <img class="full-screen-image" id="fullScreenImage">
+  </div>
+
+  <script>
+        function predict() {
+          console.log("predict is called")
+            const imageUrlInput = document.getElementById("uploadImage");
+            console.log(imageUrlInput)
+            const file = imageUrlInput.files[0];
+            console.log(file.name)
+            const imageUrl = 'C:/Users/Loges/Downloads/archive (2)/Multi Cancer/Oral Cancer/oral_scc/'+file.name
+            console.log(imageUrl)
+            // print(imageUrl)
+            // Make a POST request to your Python script using XMLHttpRequest
+            fetch('http://localhost:5001/predict_oral', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'image_path_or_url': imageUrl })
+            })
+            .then(response => response.json())
+            .then(result => {
+                // const resultDiv = document.getElementById("resultDiv");
+                // resultDiv.innerText = `Prediction: ${result.prediction}`;
+              console.log(result)
+               const resultDiv = document.getElementById("resultDiv");
+                resultDiv.innerText = `Prediction: ${result.prediction}`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
