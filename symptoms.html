@@ -5,13 +5,23 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
     }
 
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
     .container {
-      max-width: 600px;
+
+      max-width: 500px;
       margin: 20px auto;
       padding: 20px;
-      border: 1px solid #ccc;
+      border: 5px solid #ccc;
       border-radius: 5px;
     }
 
@@ -57,18 +67,20 @@
     #result p {
       margin-top: 0;
     }
-     header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+  /*nav ul {*/
+  /*  list-style: none;*/
+  /*  margin: 0;*/
+  /*  padding: 0;*/
+  /*}*/
+  h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
   }
-
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
   nav li {
     display: inline-block;
     margin-right: 1rem;
@@ -82,118 +94,217 @@
 </head>
 <body>
 <header>
+      <h1>CANCER DIAGNOSIS</h1>
     <nav>
       <ul>
-        <li><a href="diagnosis.html">Home</a></li>
-         <li><a href="diagnosis.html">Detection</a></li>
-        <li><a href="symptoms.html">Symptoms Detection</a></li>
-         <li><a href="precaution.html">Precaution & Diet</a></li>
-           <li><a href="about.html">About Us</a></li>
-        <li><a href="service.html">Service</a></li>
+        <li><a href="home.html">Home</a></li>
+          <li><a href="diagnosis.html">Detection</a></li>
+          <li><a href="symptoms.html" style="color:violet;">Symptoms Detection</a></li>
+           <li><a href="precaution.html">Precaution & Diet</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Services</a></li>
       </ul>
     </nav>
-  </header>
+</header>
+<!--  <div class="container">-->
+<!--    <h2>Interactive Symptom Checker</h2>-->
+<!--    <label for="cancerType">Select the cancer type:</label>-->
+<!--    <select id="cancerType" onchange="showSymptoms()">-->
+<!--      <option value="">Select Cancer Type</option>-->
+<!--      <option value="brain">Brain Cancer</option>-->
+<!--      <option value="oral">Oral Cancer</option>-->
+<!--      <option value="lung">Lung Cancer</option>-->
+<!--      <option value="kidney">Kidney Cancer</option>-->
+<!--      &lt;!&ndash; Add more cancer types here &ndash;&gt;-->
+<!--    </select>-->
+
+<!--    <div class="checkbox-group" id="symptomsContainer">-->
+<!--      &lt;!&ndash; Symptoms for the selected cancer type will be dynamically added here &ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <button onclick="predictCancer()">Predict Cancer</button>-->
+
+<!--    <div id="result">-->
+<!--      <h3>Prediction Result:</h3>-->
+<!--      <p id="predictionResult"></p>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <script>-->
+<!--    const symptomData = {-->
+<!--      brain: [-->
+<!--        "headache",-->
+<!--        "seizure",-->
+<!--        "nausea",-->
+<!--        "vision",-->
+<!--        "speech",-->
+<!--        "weakness",-->
+<!--        "balance",-->
+<!--        "personality",-->
+<!--        "memory",-->
+<!--        "fatigue",-->
+<!--        "sleep",-->
+<!--        "swallowing",-->
+<!--      ],-->
+<!--      oral: [-->
+<!--        "soreMouth",-->
+<!--        "patches",-->
+<!--        "difficultySwallow",-->
+<!--        "chronicThroat",-->
+<!--        "lumpThickening",-->
+<!--        "numbnessPain",-->
+<!--        "changeVoice",-->
+<!--        "looseTeeth",-->
+<!--        "difficultyChewing",-->
+<!--        "earPain",-->
+<!--        "unexplainedWeightLoss",-->
+<!--      ],-->
+<!--      lung: [-->
+<!--        "cough",-->
+<!--        "breathShortness",-->
+<!--        "chestPain",-->
+<!--        "unexplainedWeightLoss",-->
+<!--        "fatigue",-->
+<!--        "hoarseness",-->
+<!--        "coughingBlood",-->
+<!--        "respiratoryInfections",-->
+<!--        "difficultySwallowing",-->
+<!--      ],-->
+<!--      kidney: [-->
+<!--        "bloodInUrine",-->
+<!--        "backPain",-->
+<!--        "unintentionalWeightLoss",-->
+<!--        "fatigue",-->
+<!--        "persistentFever",-->
+<!--        "swellingLegsAnkles",-->
+<!--        "massAbdomen",-->
+<!--      ],-->
+<!--      // Add more cancer data here-->
+<!--    };-->
+
+<!--    function showSymptoms() {-->
+<!--      const cancerType = document.getElementById('cancerType').value;-->
+<!--      const symptomsContainer = document.getElementById('symptomsContainer');-->
+
+<!--      while (symptomsContainer.firstChild) {-->
+<!--        symptomsContainer.removeChild(symptomsContainer.firstChild);-->
+<!--      }-->
+
+<!--      if (cancerType) {-->
+<!--        const symptoms = symptomData[cancerType];-->
+<!--        symptoms.forEach(symptom => {-->
+<!--          const label = document.createElement('label');-->
+<!--          label.innerHTML = `<input type="checkbox" value="${symptom}">${formatSymptomName(symptom)}`;-->
+<!--          symptomsContainer.appendChild(label);-->
+<!--        });-->
+<!--      }-->
+<!--    }-->
+
+<!--    function formatSymptomName(symptom) {-->
+<!--      return symptom.charAt(0).toUpperCase() + symptom.slice(1).replace(/([A-Z])/g, ' $1').toLowerCase();-->
+<!--    }-->
+
+<!--    function predictCancer() {-->
+<!--      const cancerType = document.getElementById('cancerType').value;-->
+<!--      const selectedSymptoms = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));-->
+<!--      const selectedSymptomsValues = selectedSymptoms.map(checkbox => checkbox.value);-->
+
+<!--      if (!selectedSymptomsValues.length) {-->
+<!--        alert('Please select at least one symptom.');-->
+<!--        return;-->
+<!--      }-->
+
+<!--      let likelihood = 0;-->
+<!--      const cancerSymptoms = symptomData[cancerType];-->
+<!--      selectedSymptomsValues.forEach(symptom => {-->
+<!--        if (cancerSymptoms.includes(symptom)) {-->
+<!--          likelihood += 1;-->
+<!--        }-->
+<!--      });-->
+
+<!--      const percentage = (likelihood / cancerSymptoms.length) * 100;-->
+<!--      displayResult(cancerType, percentage);-->
+<!--    }-->
+
+<!--    function displayResult(cancerType, percentage) {-->
+<!--      const resultParagraph = document.getElementById('predictionResult');-->
+<!--      resultParagraph.textContent = `Based on the selected symptoms, the likelihood of having ${cancerType} cancer is ${percentage.toFixed(2)}%.`;-->
+<!--    }-->
+<!--  </script>-->
+<!--</body>-->
 
   <div class="container">
     <h2>Interactive Symptom Checker</h2>
-    <label for="cancerType">Select the cancer type:</label>
-    <select id="cancerType" onchange="showSymptoms()">
-      <option value="">Select Cancer Type</option>
-      <option value="brain">Brain Cancer</option>
-      <option value="oral">Oral Cancer</option>
-      <option value="lung">Lung Cancer</option>
-      <option value="kidney">Kidney Cancer</option>
-      <!-- Add more cancer types here -->
-    </select>
+    <p style="font-weight: bolder">Note: If you have the symptoms mentioned below, for a long time (a month or more), use this checker</p>
+    <div class="checkbox-group">
+      <label>Select symptoms:</label>
+      <!-- Add symptom checkboxes here -->
+      <input type="checkbox" value="headache"> Headache<br>
+      <input type="checkbox" value="seizure"> Seizure<br>
+      <input type="checkbox" value="nausea"> Nausea<br>
+      <input type="checkbox" value="vision"> Changes in Vision<br>
+      <input type="checkbox" value="speech"> Difficulty Speaking or Understanding Speech<br>
+      <input type="checkbox" value="weakness"> Weakness or Numbness<br>
+      <input type="checkbox" value="balance"> Balance Problems<br>
+      <input type="checkbox" value="personality"> Personality or Behavioral Changes<br>
+      <input type="checkbox" value="memory"> Memory Problems<br>
+      <input type="checkbox" value="fatigue"> Fatigue<br>
+      <input type="checkbox" value="sleep"> Sleep Disturbances<br>
+      <input type="checkbox" value="swallowing"> Difficulty Swallowing<br>
+      <input type="checkbox" value="persistentMouthSores"> Persistent Mouth Sores<br>
+      <input type="checkbox" value="persistentMouthSores"> Persistent Mouth Sores<br>
+      <input type="checkbox" value="whiteOrRedPatches"> White or Red Patches in Mouth<br>
+      <input type="checkbox" value="difficultySwallow"> Difficulty Swallowing<br>
+      <input type="checkbox" value="chronicSoreThroat"> Chronic Sore Throat<br>
+      <input type="checkbox" value="lumpOrThickening"> Lump or Thickening in Mouth or Neck<br>
+      <input type="checkbox" value="numbnessOrPain"> Numbness or Pain in Mouth or Neck<br>
+      <input type="checkbox" value="changeInVoice"> Change in Voice<br>
+      <input type="checkbox" value="looseTeeth"> Loose Teeth<br>
+      <input type="checkbox" value="difficultyChewing"> Difficulty Chewing<br>
+      <input type="checkbox" value="earPain"> Ear Pain<br>
+      <input type="checkbox" value="unexplained"> Unexplained<br>
+      <input type="checkbox" value="bloodInUrine"> Blood in Urine<br>
+      <input type="checkbox" value="backPain"> Back or Flank Pain<br>
+      <input type="checkbox" value="unintentionalWeightLoss"> Unintentional Weight Loss<br>
+      <input type="checkbox" value="fatigue"> Fatigue<br>
+      <input type="checkbox" value="persistentFever"> Persistent Fever<br>
+      <input type="checkbox" value="swellingInLegsAndAnkles"> Swelling in Legs and Ankles<br>
+      <input type="checkbox" value="lumpOrMassInAbdomen"> Lump or Mass in Abdomen<br>
+      <input type="checkbox" value="persistentCough"> Persistent Cough<br>
+      <input type="checkbox" value="shortnessOfBreath"> Shortness of Breath<br>
+      <input type="checkbox" value="chestPain"> Chest Pain<br>
+      <input type="checkbox" value="unintentionalWeightLoss"> Unintentional Weight Loss<br>
+      <input type="checkbox" value="fatigue"> Fatigue<br>
+      <input type="checkbox" value="hoarseness"> Hoarseness<br>
+      <input type="checkbox" value="coughingUpBlood"> Coughing up Blood<br>
+      <input type="checkbox" value="recurrentRespiratoryInfections"> Recurrent Respiratory Infections<br>
+      <input type="checkbox" value="difficultySwallowing"> Difficulty Swallowing<br>
 
-    <div class="checkbox-group" id="symptomsContainer">
-      <!-- Symptoms for the selected cancer type will be dynamically added here -->
     </div>
 
     <button onclick="predictCancer()">Predict Cancer</button>
 
-    <div id="result">
-      <h3>Prediction Result:</h3>
-      <p id="predictionResult"></p>
-    </div>
+    <div id="predictionResult"></div>
   </div>
 
   <script>
-    const symptomData = {
-      brain: [
-        "headache",
-        "seizure",
-        "nausea",
-        "vision",
-        "speech",
-        "weakness",
-        "balance",
-        "personality",
-        "memory",
-        "fatigue",
-        "sleep",
-        "swallowing",
-      ],
-      oral: [
-        "soreMouth",
-        "patches",
-        "difficultySwallow",
-        "chronicThroat",
-        "lumpThickening",
-        "numbnessPain",
-        "changeVoice",
-        "looseTeeth",
-        "difficultyChewing",
-        "earPain",
-        "unexplainedWeightLoss",
-      ],
-      lung: [
-        "cough",
-        "breathShortness",
-        "chestPain",
-        "unexplainedWeightLoss",
-        "fatigue",
-        "hoarseness",
-        "coughingBlood",
-        "respiratoryInfections",
-        "difficultySwallowing",
-      ],
-      kidney: [
-        "bloodInUrine",
-        "backPain",
-        "unintentionalWeightLoss",
-        "fatigue",
-        "persistentFever",
-        "swellingLegsAnkles",
-        "massAbdomen",
-      ],
-      // Add more cancer data here
+    const cancerSymptoms = {
+      brain: ["headache", "seizure", "nausea","Changes in Vision","Difficulty Speaking or Understanding Speech","Weakness or Numbness", "Balance Problems","Personality or Behavioral Changes","Memory Problems","Fatigue","Sleep Disturbances","Difficulty Swallowing"],
+      oral: ["persistentMouthSores", "whiteOrRedPatches", "difficultySwallow", "chronicSoreThroat", "lumpOrThickening", "numbnessOrPain", "changeInVoice", "looseTeeth", "difficultyChewing", "earPain", "unexplained"],
+      lung:  ["persistentCough", "shortnessOfBreath", "chestPain", "unintentionalWeightLoss", "fatigue", "hoarseness", "coughingUpBlood", "recurrentRespiratoryInfections", "difficultySwallowing"],
+      kidney: ["bloodInUrine", "backPain", "unintentionalWeightLoss", "fatigue", "persistentFever", "swellingInLegsAndAnkles", "lumpOrMassInAbdomen"],
+      // Add more cancer symptoms here
     };
 
-    function showSymptoms() {
-      const cancerType = document.getElementById('cancerType').value;
-      const symptomsContainer = document.getElementById('symptomsContainer');
-
-      while (symptomsContainer.firstChild) {
-        symptomsContainer.removeChild(symptomsContainer.firstChild);
-      }
-
-      if (cancerType) {
-        const symptoms = symptomData[cancerType];
-        symptoms.forEach(symptom => {
-          const label = document.createElement('label');
-          label.innerHTML = `<input type="checkbox" value="${symptom}">${formatSymptomName(symptom)}`;
-          symptomsContainer.appendChild(label);
-        });
-      }
-    }
-
-    function formatSymptomName(symptom) {
-      return symptom.charAt(0).toUpperCase() + symptom.slice(1).replace(/([A-Z])/g, ' $1').toLowerCase();
-    }
+    const cancerNames = {
+      brain: "Brain Cancer",
+      oral: "Oral Cancer",
+      lung: "Lung Cancer",
+      kidney: "Kidney Cancer",
+      // Add more cancer names here
+    };
 
     function predictCancer() {
-      const cancerType = document.getElementById('cancerType').value;
       const selectedSymptoms = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
       const selectedSymptomsValues = selectedSymptoms.map(checkbox => checkbox.value);
 
@@ -202,21 +313,35 @@
         return;
       }
 
-      let likelihood = 0;
-      const cancerSymptoms = symptomData[cancerType];
-      selectedSymptomsValues.forEach(symptom => {
-        if (cancerSymptoms.includes(symptom)) {
-          likelihood += 1;
-        }
-      });
+      const predictions = {};
 
-      const percentage = (likelihood / cancerSymptoms.length) * 100;
-      displayResult(cancerType, percentage);
+      for (const cancerType in cancerSymptoms) {
+        const cancerSymptomsList = cancerSymptoms[cancerType];
+        let likelihood = 0;
+
+        selectedSymptomsValues.forEach(symptom => {
+          if (cancerSymptomsList.includes(symptom)) {
+            likelihood += 1;
+          }
+        });
+
+        const percentage = (likelihood / cancerSymptomsList.length) * 100;
+        predictions[cancerType] = percentage;
+      }
+
+      displayPredictions(predictions);
     }
 
-    function displayResult(cancerType, percentage) {
-      const resultParagraph = document.getElementById('predictionResult');
-      resultParagraph.textContent = `Based on the selected symptoms, the likelihood of having ${cancerType} cancer is ${percentage.toFixed(2)}%.`;
+    function displayPredictions(predictions) {
+      const predictionResult = document.getElementById('predictionResult');
+      predictionResult.innerHTML = "<h3>Prediction Results:</h3>";
+
+      for (const cancerType in predictions) {
+        const percentage = predictions[cancerType].toFixed(2);
+
+      predictionResult.innerHTML += `<p>Based on the selected symptoms, there's a likelihood of ${percentage}% for ${cancerNames[cancerType]}.</p>`;
+
+      }
     }
   </script>
 </body>
