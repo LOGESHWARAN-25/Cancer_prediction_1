@@ -1,25 +1,32 @@
 body {
-  font-style: revert;
-  line-height: 1.6;
+  font-family: Arial, sans-serif;
+  /*line-height: 1.6;*/
   margin: 0px;
   padding: 0px;
-  font-size: 20px;
-  color: white;
-  background-image: url("https://www.netscribes.com/wp-content/uploads/2016/08/AI-Blog-Cover-1.jpg");
+  color: antiquewhite;
+  font-size: 19px;
+  background-image: url("https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fG1lZGljYWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60");
+  background-color: gray;
+  background-blend-mode: multiply;
   background-size: cover;
+}
+.description{
+  font-size: 19px;
 }
 
 header {
   background-color: #333;
   color: #fff;
-  padding: 1rem;
+  text-align: center  ;
+  padding: 10px;
+  font-size: 16px;
 }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+/*nav ul {*/
+/*  list-style: none;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
 
 nav li {
   display: inline-block;
@@ -35,18 +42,18 @@ main {
   padding: 2rem;
 }
 
-h1 {
-  margin-bottom: 1rem;
-}
+/*h1 {*/
+/*  margin-bottom: 1rem;*/
+/*}*/
 
 p {
   margin-bottom: 1rem;
 }
 
-ul {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
+/*ul {*/
+/*  margin-bottom: 1rem;*/
+/*  padding-left: 2rem;*/
+/*}*/
 
 footer {
   background-color: #333;

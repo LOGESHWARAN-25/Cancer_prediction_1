@@ -1,26 +1,30 @@
 body {
-  font-style: revert;
-  line-height: 1.6;
+  /*font-style: revert;*/
+  font-family: Arial, sans-serif;
+  /*line-height: 1.6;*/
   margin: 0px;
   padding: 0px;
-  font-size: 24px;
+  font-size: 19px;
   color: black;
-  background-image: url("https://wallpapercave.com/wp/wp2294540.jpg");
+  /*background-image: url("https://wallpapercave.com/wp/wp2294540.jpg");*/
   background-size: cover;
 }
-
+/*body {*/
+/*      font-family: Arial, sans-serif;*/
+/*      background-color: #f2f2f2;*/
+/*    }*/
 header {
   background-color: #333;
   color: #fff;
-  padding: 1rem;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
 }
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
+/*nav ul {*/
+/*  list-style: none;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
 nav li {
   display: inline-block;
   margin-right: 1rem;
@@ -32,21 +36,22 @@ nav a {
 }
 
 main {
-  padding: 2rem;
+  color: orange;
+  font-weight: bolder;
+  padding: 4rem;
+  background-image: url("https://media.istockphoto.com/id/996097236/vector/cancer-cells-low-poly-blue.jpg?s=612x612&w=0&k=20&c=6gwj1oS47rc4c6AwVIPC_sOpzZGQc_dz86cjEow76wE=");
+  background-color:gray ;
+  background-blend-mode: multiply;
 }
 
-h1 {
+.description p {
   margin-bottom: 1rem;
 }
 
-p {
-  margin-bottom: 1rem;
-}
-
-ul {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
+/*ul {*/
+/*  margin-bottom: 1rem;*/
+/*  padding-left: 2rem;*/
+/*}*/
 
 footer {
   background-color: #333;

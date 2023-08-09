@@ -1,51 +1,51 @@
-body {
-    font-family: "Times New Roman","sans-serif";
-    line-height: 1.6;
-    margin: 2px;
-    padding: 2px;
-  }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
 
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-  }
-
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  nav li {
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    p{
+      color: #00a7ff;
+    }
+  /*nav ul {*/
+  /*  list-style: none;*/
+  /*  margin: 0;*/
+  /*  padding: 0;*/
+  /*}*/
+   nav li {
     display: inline-block;
     margin-right: 1rem;
   }
-
-  nav a {
+     nav a {
     color: #fff;
     text-decoration: none;
   }
-
   main {
     font-family: "sans-serif";
     padding: 2rem;
-    background-image: url('https://www.biospectrumindia.com/uploads/articles/cancer_n_ai-10988.jpg');
+    /*background-image: url('https://images.unsplash.com/photo-1581594294883-5109c202942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80');*/
+    /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8XFv_sC1-jyIjy-CCRMoMvPahVZQbQxxSIg&usqp=CAU");*/
+    background-image: url("https://media.istockphoto.com/id/1372020529/photo/cancer-malignant-cells.jpg?s=612x612&w=0&k=20&c=SIGuRLZdcCBvGE9IuW3sorGeKlNIkjeG-vxDBT_zQhI=");
     background-size: cover;
+    background-color: darkgray;
+    background-blend-mode: multiply;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color:whitesmoke;
     justify-content: center;
     align-items: center;
   }
 
-  h1 {
-    margin-bottom: 1rem;
-    font-weight: bold;
-    color: #fff;
-  }
 
   .image-upload {
     margin-top: 2rem;
@@ -81,6 +81,20 @@ body {
     background-color: #555;
   }
 
+  p{
+    font-size: 23px;
+  }
+  label{
+    margin-left: 40px;
+    font-size: 30px;
+    font-family: "Berlin Sans FB";
+  }
+  input,select,button{
+    vertical-align: 4px;
+    padding: 5px;
+  }
+
+
   .output {
     margin-top: 2rem;
     display: none;
@@ -112,7 +126,6 @@ body {
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 1;
   }
-
   .close-button {
     color: #fff;
     font-size: 40px;
@@ -128,7 +141,6 @@ body {
     margin: auto;
     display: block;
   }
-
   /* Footer Styles */
   footer {
     background-color: #333;

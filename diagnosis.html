@@ -8,21 +8,23 @@
 </head>
 <body>
   <header>
+      <h1>CANCER DIAGNOSIS</h1>
     <nav>
       <ul>
         <li><a href="home.html">Home</a></li>
-         <li><a href="diagnosis.html">Detection</a></li>
-        <li><a href="symptoms.html">Symptoms Detection</a></li>
-         <li><a href="precaution.html">Precaution & Diet</a></li>
+          <li><a href="diagnosis.html" style="color:violet;">Detection</a></li>
+          <li><a href="symptoms.html">Symptoms Detection</a></li>
+           <li><a href="precaution.html">Precaution & Diet</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="service.html">Services</a></li>
       </ul>
     </nav>
   </header>
-
   <main>
     <h1>Welcome to Cancer Diagnosis</h1>
     <p>Choose the type of cancer you want to diagnose:</p>
+    <br>
+    <br>
     <form class="diagnosis-form" action="diagnosis_process.php" method="POST">
       <label for="patient_name">Patient Name:</label>
       <input type="text" id="patient_name" name="patient_name" required>
@@ -76,7 +78,6 @@
     }
   </script>
   </main>
-
   <footer>
     <p>&copy; 2023 Cancer Diagnosis Project. All rights reserved.</p>
   </footer>
